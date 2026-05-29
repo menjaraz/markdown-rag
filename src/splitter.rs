@@ -129,7 +129,7 @@ impl MarkdownSplitter {
         Self::new(SplitterConfig::default())
     }
 
-    /// Create a splitter optimized for small devices (300-400 char chunks)
+    /// Create a splitter optimized for low-resource environments (350 char chunks)
     pub fn for_small_devices() -> Result<Self> {
         Self::new(SplitterConfig {
             chunk_size: 350,
@@ -137,7 +137,7 @@ impl MarkdownSplitter {
         })
     }
 
-    /// Create a splitter optimized for context (800-1200 char chunks)
+    /// Create a splitter optimized for context preservation (1000 char chunks, 100 char overlap)
     pub fn for_context_preservation() -> Result<Self> {
         Self::new(SplitterConfig {
             chunk_size: 1000,

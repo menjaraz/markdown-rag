@@ -143,7 +143,7 @@ impl DocumentLoader {
         self.config
     }
 
-    /// Count markdown files in a directory (non-recursive at root level)
+    /// Count markdown files in a directory (recursive)
     pub fn count_markdown_files(&self, dir: &str) -> Result<usize> {
         let count = WalkDir::new(dir)
             .into_iter()

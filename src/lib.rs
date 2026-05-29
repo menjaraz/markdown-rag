@@ -1,3 +1,4 @@
+#![warn(missing_docs)]
 //! # Markdown RAG
 //!
 //! A semantic markdown document loader and chunker for RAG pipelines.

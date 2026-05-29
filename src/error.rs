@@ -15,19 +15,33 @@ pub enum Error {
 
     /// Document has no content
     #[error("Document is empty: {path}")]
-    EmptyDocument { path: String },
+    EmptyDocument {
+        /// Path of the empty document
+        path: String,
+    },
 
     /// Invalid path provided
     #[error("Invalid path: {path}")]
-    InvalidPath { path: String },
+    InvalidPath {
+        /// The offending path
+        path: String,
+    },
 
     /// Chunking configuration error
     #[error("Invalid chunk configuration: {reason}")]
-    InvalidConfig { reason: String },
+    InvalidConfig {
+        /// Description of what is invalid
+        reason: String,
+    },
 
     /// UTF-8 decoding error
     #[error("UTF-8 decode error in {path}: {reason}")]
-    InvalidUtf8 { path: String, reason: String },
+    InvalidUtf8 {
+        /// Path of the file that failed to decode
+        path: String,
+        /// Description of the decoding error
+        reason: String,
+    },
 
     /// Generic error
     #[error("{0}")]
