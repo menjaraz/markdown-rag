@@ -2,11 +2,11 @@
 name = "markdown-rag"
 version = "0.1.0"
 edition = "2021"
-authors = ["Your Name <you@example.com>"]
+authors = ["Menjanahary R. R. <menjaraz@gmail.com>"]
 description = "A semantic markdown document loader and splitter for RAG pipelines"
 license = "MIT OR Apache-2.0"
 readme = "README.md"
-repository = "https://github.com/yourusername/markdown-rag"
+repository = "https://github.com/menjaraz/markdown-rag"
 keywords = ["markdown", "chunking", "rag", "nlp", "text-splitting"]
 categories = ["text-processing", "database"]
 

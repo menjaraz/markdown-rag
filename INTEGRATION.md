@@ -94,7 +94,7 @@ async fn main() -> Result<()> {
 }
 ```
 
-### T460 Pipeline (Streaming)
+### Low-Resource Pipeline (Streaming, CPU-Only)
 
 ```rust
 use markdown_rag::{DocumentLoader, SplitterConfig};
@@ -154,7 +154,7 @@ async fn main() -> Result<()> {
 
 ## 4. Configuration Strategies
 
-### For T460 (8GB RAM)
+### For Low-Resource (CPU-Only, 8 GB RAM)
 ```rust
 let config = SplitterConfig {
     chunk_size: 350,  // Smaller chunks
@@ -174,7 +174,7 @@ let loader = DocumentLoader::new(config);
 
 ### Using Presets
 ```rust
-// T460-friendly
+// CPU-only friendly
 let splitter = MarkdownSplitter::for_small_devices()?;
 
 // Preserve context (larger)

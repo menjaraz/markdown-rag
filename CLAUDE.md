@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**markdown-rag** is a Rust library for semantic markdown document loading and chunking, optimized for RAG (Retrieval-Augmented Generation) pipelines. It respects markdown structure (headers, paragraphs, code blocks) when splitting documents into configurable chunks, with support for both batch and streaming modes. The library is designed to handle resource-constrained environments (e.g., Lenovo T460 with 8GB RAM).
+**markdown-rag** is a Rust library for semantic markdown document loading and chunking, optimized for RAG (Retrieval-Augmented Generation) pipelines. It respects markdown structure (headers, paragraphs, code blocks) when splitting documents into configurable chunks, with support for both batch and streaming modes. The library is designed to handle resource-constrained environments (e.g., CPU-only machines with 8 GB RAM).
 
 **Key use case**: Preprocessing markdown documentation for vector databases (Qdrant) with embeddings (Ollama).
 
@@ -102,13 +102,13 @@ Raw Markdown Files
 
 The library provides three preset configurations optimized for different scenarios:
 
-| Preset | Chunk Size | Overlap | Use Case | Performance (T460) |
+| Preset | Chunk Size | Overlap | Use Case | Performance (CPU-only, 8 GB RAM) |
 |--------|-----------|---------|----------|-------------------|
 | **Standard** | 600 chars | 0 | Default RAG | ~5-10 chunks/sec |
-| **Small Devices** | 350 chars | 0 | T460, 8GB RAM | Fewer vectors, higher granularity |
+| **Small Devices** | 350 chars | 0 | CPU-only, 8 GB RAM | Fewer vectors, higher granularity |
 | **Context Preservation** | 1000 chars | 100 | 16GB+ RAM | Better context, fewer vectors |
 
-T460 (Intel i5-6200U, 8GB RAM) benchmarks:
+Low-resource (CPU-only, 8 GB RAM) benchmarks:
 - Loading 10 docs (~100KB): ~500ms
 - Chunking 100 docs (~1MB): ~2s
 - Peak memory (batch): <200MB

@@ -3,7 +3,7 @@
 A semantic markdown document loader and chunker for RAG pipelines, optimized for resource-constrained environments.
 
 [![Crates.io](https://img.shields.io/crates/v/markdown-rag.svg)](https://crates.io/crates/markdown-rag)
-[![License](https://img.shields.io/crates/l/markdown-rag.svg)](https://github.com/yourusername/markdown-rag#license)
+[![License](https://img.shields.io/crates/l/markdown-rag.svg)](https://github.com/menjaraz/markdown-rag#license)
 
 ## Features
 
@@ -12,7 +12,7 @@ A semantic markdown document loader and chunker for RAG pipelines, optimized for
 📚 **Batch & Stream**: Load all at once or process one file at a time
 📊 **Statistics**: Get detailed stats about your documents
 🔍 **Metadata**: Track source paths, byte offsets, word/char counts
-🎯 **T460-Optimized**: Presets for small devices (350 chars/chunk)
+🎯 **CPU-Only Optimized**: Presets for low-resource machines (350 chars/chunk)
 
 ## Installation
 
@@ -55,7 +55,7 @@ fn main() -> Result<()> {
 use markdown_rag::{DocumentLoader, SplitterConfig};
 
 let config = SplitterConfig {
-    chunk_size: 400,    // Smaller chunks for T460
+    chunk_size: 400,    // Smaller chunks for CPU-only environments
     overlap: 50,        // 50 char overlap between chunks
 };
 
@@ -189,7 +189,7 @@ println!("{}", stats.summary());
 // 📊 Documents: 5 | Chunks: 32 | Size: 2MB | Avg chunk: 64KB | Words: 15000
 ```
 
-### Stream Processing (T460-Friendly)
+### Stream Processing (CPU-Only, 8 GB RAM)
 
 ```rust
 let config = SplitterConfig {
@@ -219,7 +219,7 @@ SplitterConfig::default()
 // chunk_size: 600, overlap: 0
 ```
 
-### Small Devices / T460 (350 chars)
+### Low-Resource / CPU-Only (350 chars)
 ```rust
 MarkdownSplitter::for_small_devices()?
 // chunk_size: 350, overlap: 0
@@ -233,7 +233,7 @@ MarkdownSplitter::for_context_preservation()?
 
 ## Performance
 
-On a Lenovo T460 (Intel i5-6200U, 8GB RAM):
+On a low-resource machine (CPU-only, 8 GB RAM):
 
 - **Loading 10 documents (~100KB)**: ~500ms
 - **Chunking 100 documents (~1MB)**: ~2s

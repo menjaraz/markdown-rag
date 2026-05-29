@@ -158,7 +158,7 @@ loader.load_directory_streaming("./docs", |chunk| {
     Ok(())
 })?;
 ```
-**When**: Large document sets (>100MB) or resource-constrained (T460)
+**When**: Large document sets (>100MB) or resource-constrained (CPU-only, 8 GB RAM)
 **Memory**: Low (constant ~50MB)
 **Speed**: Slower (sequential)
 
@@ -178,7 +178,7 @@ let stats = loader.get_stats("./docs")?;
 - ~2-4 chunks per typical paragraph
 
 ### Small Devices (350 chars)
-- T460 / 8GB RAM
+- CPU-only / 8 GB RAM
 - Fewer vectors = less memory
 - More chunks = higher granularity
 - 2-3x more chunks than standard
@@ -191,7 +191,7 @@ let stats = loader.get_stats("./docs")?;
 
 ## Performance Characteristics
 
-### T460 (8GB RAM, 2 cores)
+### Low-Resource (CPU-only, 8 GB RAM, 2 cores)
 ```
 Loading 10 files (100KB):       ~500ms
 Chunking 100 docs (1MB):        ~2s
