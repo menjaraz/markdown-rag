@@ -1,0 +1,22 @@
+[package]
+name = "markdown-rag"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <you@example.com>"]
+description = "A semantic markdown document loader and splitter for RAG pipelines"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/yourusername/markdown-rag"
+keywords = ["markdown", "chunking", "rag", "nlp", "text-splitting"]
+categories = ["text-processing", "database"]
+
+[dependencies]
+text-splitter = { version = "0.14", features = ["markdown"] }
+walkdir = "2"
+anyhow = "1.0"
+thiserror = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
