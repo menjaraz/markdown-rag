@@ -3,7 +3,6 @@
 use crate::document::{ChunkedDocument, Document};
 use crate::error::{Error, Result};
 use crate::splitter::{MarkdownSplitter, SplitterConfig};
-//use std::path::{Path, PathBuf};
 use walkdir::WalkDir;
 
 /// Document loader with batching and streaming options
@@ -43,10 +42,10 @@ impl DocumentLoader {
         for entry in WalkDir::new(dir)
             .into_iter()
             .filter_map(|e| e.ok())
-            .filter(|e| e.path().extension().map_or(false, |ext| ext == "md"))
+            .filter(|e| e.path().extension().is_some_and(|ext| ext == "md"))
         {
             let path = entry.path();
-            let content = std::fs::read_to_string(path).map_err(|e| Error::Io(e))?;
+            let content = std::fs::read_to_string(path).map_err(Error::Io)?;
 
             let rel_path = path
                 .strip_prefix(dir)
@@ -86,7 +85,7 @@ impl DocumentLoader {
         for entry in WalkDir::new(dir)
             .into_iter()
             .filter_map(|e| e.ok())
-            .filter(|e| e.path().extension().map_or(false, |ext| ext == "md"))
+            .filter(|e| e.path().extension().is_some_and(|ext| ext == "md"))
         {
             let path = entry.path();
             let content = std::fs::read_to_string(path)?;
@@ -122,7 +121,7 @@ impl DocumentLoader {
         for entry in WalkDir::new(dir)
             .into_iter()
             .filter_map(|e| e.ok())
-            .filter(|e| e.path().extension().map_or(false, |ext| ext == "md"))
+            .filter(|e| e.path().extension().is_some_and(|ext| ext == "md"))
         {
             let path = entry.path();
             let content = std::fs::read_to_string(path)?;
@@ -149,7 +148,7 @@ impl DocumentLoader {
         let count = WalkDir::new(dir)
             .into_iter()
             .filter_map(|e| e.ok())
-            .filter(|e| e.path().extension().map_or(false, |ext| ext == "md"))
+            .filter(|e| e.path().extension().is_some_and(|ext| ext == "md"))
             .count();
 
         Ok(count)
@@ -216,14 +215,10 @@ impl LoaderStats {
 #[cfg(test)]
 mod tests {
     use super::*;
-    //use std::fs;
 
     #[test]
     fn test_loader_creation() {
         let loader = DocumentLoader::new(SplitterConfig::default());
         assert_eq!(loader.config().chunk_size, 600);
     }
-
-    // Note: Full filesystem tests would require temporary directories
-    // Implement integration tests with actual file fixtures if needed
 }

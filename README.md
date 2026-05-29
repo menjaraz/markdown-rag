@@ -89,7 +89,7 @@ let splitter = MarkdownSplitter::for_small_devices()?;
 let splitter = MarkdownSplitter::for_context_preservation()?;
 
 // Custom
-let splitter = MarkdownSplitter::default()?;
+let splitter = MarkdownSplitter::standard()?;
 ```
 
 ## API

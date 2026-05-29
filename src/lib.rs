@@ -15,15 +15,14 @@
 //! ```rust,ignore
 //! use markdown_rag::{DocumentLoader, SplitterConfig};
 //!
-//! #[tokio::main]
-//! async fn main() -> Result<()> {
+//! fn main() -> anyhow::Result<()> {
 //!     let config = SplitterConfig {
 //!         chunk_size: 600,
 //!         overlap: 0,
 //!     };
 //!
 //!     let loader = DocumentLoader::new(config);
-//!     let chunks = loader.load_directory("./docs").await?;
+//!     let chunks = loader.load_directory("./docs")?;
 //!
 //!     for chunk in chunks {
 //!         println!("{}: {} chars", chunk.source, chunk.content.len());
@@ -35,7 +34,7 @@
 //! ## Modes
 //!
 //! - **Batch mode**: Load all documents at once (`load_directory`)
-//! - **Stream mode**: Process one at a time for memory efficiency (`load_documents_streaming`)
+//! - **Stream mode**: Process one at a time for memory efficiency (`load_directory_streaming`)
 
 mod document;
 mod error;

@@ -181,7 +181,7 @@ let splitter = MarkdownSplitter::for_small_devices()?;
 let splitter = MarkdownSplitter::for_context_preservation()?;
 
 // Default (standard)
-let splitter = MarkdownSplitter::default()?;
+let splitter = MarkdownSplitter::standard()?;
 ```
 
 ## 5. Analyzing Before Embedding

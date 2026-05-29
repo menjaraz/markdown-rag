@@ -3,7 +3,7 @@
 use crate::document::ChunkedDocument;
 use crate::error::{Error, Result};
 use serde::{Deserialize, Serialize};
-use text_splitter::{MarkdownSplitter as TextSplitter, Characters}; //use text_splitter::MarkdownSplitter as TextSplitter;
+use text_splitter::{Characters, MarkdownSplitter as TextSplitter};
 
 /// Configuration for markdown splitting
 #[derive(Debug, Clone, Copy, Serialize, Deserialize)]
@@ -48,7 +48,7 @@ impl Default for SplitterConfig {
 /// Markdown document splitter
 pub struct MarkdownSplitter {
     config: SplitterConfig,
-    splitter: TextSplitter<Characters>, // TextSplitter,
+    splitter: TextSplitter<Characters>,
 }
 
 impl MarkdownSplitter {
@@ -124,8 +124,8 @@ impl MarkdownSplitter {
         self.config
     }
 
-    /// Create a splitter with default config (600 char chunks)
-    pub fn default() -> Result<Self> {
+    /// Create a splitter with standard config (600 char chunks)
+    pub fn standard() -> Result<Self> {
         Self::new(SplitterConfig::default())
     }
 
@@ -179,7 +179,7 @@ mod tests {
 
     #[test]
     fn test_splitter_split() {
-        let splitter = MarkdownSplitter::default().unwrap();
+        let splitter = MarkdownSplitter::standard().unwrap();
         let content = "# Header\n\nParagraph 1.\n\nParagraph 2.".to_string();
         let chunks = splitter.split("test.md", &content).unwrap();
 
@@ -189,7 +189,7 @@ mod tests {
 
     #[test]
     fn test_empty_document_error() {
-        let splitter = MarkdownSplitter::default().unwrap();
+        let splitter = MarkdownSplitter::standard().unwrap();
         let result = splitter.split("test.md", "");
 
         assert!(matches!(result, Err(Error::EmptyDocument { .. })));
@@ -208,7 +208,7 @@ mod tests {
 
     #[test]
     fn test_batch_split() {
-        let splitter = MarkdownSplitter::default().unwrap();
+        let splitter = MarkdownSplitter::standard().unwrap();
         let docs = vec![
             ("doc1.md".to_string(), "First doc content".to_string()),
             ("doc2.md".to_string(), "Second doc content".to_string()),
