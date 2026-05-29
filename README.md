@@ -3,6 +3,7 @@
 A semantic markdown document loader and chunker for RAG pipelines, optimized for resource-constrained environments.
 
 [![Crates.io](https://img.shields.io/crates/v/markdown-rag.svg)](https://crates.io/crates/markdown-rag)
+[![Docs.rs](https://docs.rs/markdown-rag/badge.svg)](https://docs.rs/markdown-rag)
 [![License](https://img.shields.io/crates/l/markdown-rag.svg)](https://github.com/menjaraz/markdown-rag#license)
 
 ## Features
