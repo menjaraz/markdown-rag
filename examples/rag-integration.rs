@@ -6,6 +6,16 @@
 use markdown_rag::{DocumentLoader, SplitterConfig};
 use std::time::Instant;
 
+fn format_size(bytes: usize) -> String {
+    if bytes < 1_000 {
+        format!("{bytes} B")
+    } else if bytes < 1_000_000 {
+        format!("{} KB", bytes / 1_000)
+    } else {
+        format!("{} MB", bytes / 1_000_000)
+    }
+}
+
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     println!("🦀 RAG Pipeline with markdown-rag Library\n");
@@ -102,7 +112,7 @@ async fn main() -> anyhow::Result<()> {
 
     println!("Loaded:        {} documents", stats.total_documents);
     println!("Chunks:        {}", stats.total_chunks);
-    println!("Total size:    {} KB", stats.total_size_bytes / 1000);
+    println!("Total size:    {}", format_size(stats.total_size_bytes));
     println!("Avg chunk:     {} B", stats.avg_chunk_size);
     println!("Total time:    {:.2}s", start.elapsed().as_secs_f32());
     println!();

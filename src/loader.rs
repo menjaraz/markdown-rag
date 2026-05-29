@@ -198,15 +198,25 @@ pub struct LoaderStats {
     pub avg_chunk_size: usize,
 }
 
+fn format_size(bytes: usize) -> String {
+    if bytes < 1_000 {
+        format!("{bytes} B")
+    } else if bytes < 1_000_000 {
+        format!("{} KB", bytes / 1_000)
+    } else {
+        format!("{} MB", bytes / 1_000_000)
+    }
+}
+
 impl LoaderStats {
     /// Format stats as human-readable string
     pub fn summary(&self) -> String {
         format!(
-            "📊 Documents: {} | Chunks: {} | Size: {}MB | Avg chunk: {}B | Words: {}",
+            "📊 Documents: {} | Chunks: {} | Size: {} | Avg chunk: {} | Words: {}",
             self.total_documents,
             self.total_chunks,
-            self.total_size_bytes / 1_000_000,
-            self.avg_chunk_size,
+            format_size(self.total_size_bytes),
+            format_size(self.avg_chunk_size),
             self.total_words,
         )
     }

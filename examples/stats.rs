@@ -2,6 +2,16 @@
 
 use markdown_rag::{DocumentLoader, SplitterConfig};
 
+fn format_size(bytes: usize) -> String {
+    if bytes < 1_000 {
+        format!("{bytes} B")
+    } else if bytes < 1_000_000 {
+        format!("{} KB", bytes / 1_000)
+    } else {
+        format!("{} MB", bytes / 1_000_000)
+    }
+}
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("📊 Statistics Example\n");
 
@@ -15,7 +25,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     println!("  Documents:      {}", stats.total_documents);
     println!("  Chunks:         {}", stats.total_chunks);
-    println!("  Total size:     {} MB", stats.total_size_bytes / 1_000_000);
+    println!("  Total size:     {}", format_size(stats.total_size_bytes));
     println!("  Total words:    {}", stats.total_words);
     println!("  Total lines:    {}", stats.total_lines);
     println!("  Avg chunk size: {} B", stats.avg_chunk_size);
